@@ -1,0 +1,122 @@
+@font-face {
+    font-family: robotoFont;
+    src: url(Roboto-Thin.ttf);
+}
+
+body {
+    background: url('../images/pat.png') repeat;
+    font-family: robotoFont;
+    font-size: 15px;
+    border-top: 5px solid #212121;
+    -webkit-font-smoothing: antialiased;
+    color: #FFF;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+#page
+{
+    width: 330px;
+    margin: 70px auto 100px;
+}
+
+#page h1
+{
+    text-indent: -9999px;
+    overflow: hidden;
+    height: 105px;
+    background: url('../images/cs.png') no-repeat;
+}
+
+.footer-social-icons {
+    /*width: 330px;*/
+    display:block;
+    /*margin: 70px auto 100px;*/
+}
+.social-icon {
+    color: #fff;
+    align-content: center;
+
+}
+/*ul.social-icons {*/
+    /*margin-top: 10px;*/
+/*}*/
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    margin-left: 6%;
+    /*height: 105px;*/
+    overflow: hidden;
+}
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+.fa-facebook {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    /*background-color: #322f30;*/
+}
+.fa-facebook:hover {
+    background-color: #3d5b99;
+}
+.fa-twitter {
+    padding:10px 12px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    /*background-color: #322f30;*/
+}
+.fa-twitter:hover {
+    background-color: #00aced;
+}
+
+.fa-linkedin {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    /*background-color: #322f30;*/
+}
+.fa-linkedin:hover {
+    background-color: #0073a4;
+}
+
+.fa-github {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    /*background-color: #322f30;*/
+}
+.fa-github:hover {
+    background-color: #808080;
+}
+
+.fa-soundcloud {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    /*background-color: #322f30;*/
+}
+.fa-soundcloud:hover {
+    background-color: #FF7512;
+}
+
