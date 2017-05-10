@@ -1,17 +1,22 @@
 /**
- * Created by rgohil2016 on 5/9/2017.
+ * Created by Rishi Gohil on 5/9/2017.
  */
+//Initializing the beast in the room.
 var myapp = angular.module('my-web-app', ['ngRoute', 'ngAnimate']);
 
-myapp.config(function($routeProvider) {
+//Configuring the beast to do its job.
+myapp.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl : 'views/home.html',
+            templateUrl : '/views/home.html',
             controller  : 'my-controller'
         })
+
+     $locationProvider.html5Mode(true).hashPrefix('!');
 });
 
-// create the controller and inject Angular's $scope
+// Giving beast the weapon to perform some hot actions.
+//Part 2 of the beast is coming soon. ;)
 myapp.controller('my-controller', function($scope) {
     // create a message to display in our view
     $scope.message = 'Coming Soon';
@@ -41,6 +46,6 @@ myapp.controller('my-controller', function($scope) {
     };
 }).directive('mySocialLinksDirective', function() {
     return {
-        templateUrl: 'views/social.html'
+        templateUrl: '/views/social.html'
     };
 });
