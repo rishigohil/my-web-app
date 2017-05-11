@@ -51,6 +51,7 @@ body {
     margin-left: 6%;
     /*height: 105px;*/
     overflow: hidden;
+    color: #fff;
 }
 .social-icons a {
     color: #fff;
@@ -63,7 +64,7 @@ body {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    /*background-color: #322f30;*/
+    color: #fff;
 }
 .fa-facebook:hover {
     background-color: #3d5b99;
@@ -75,7 +76,7 @@ body {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    /*background-color: #322f30;*/
+    color: #fff;
 }
 .fa-twitter:hover {
     background-color: #00aced;
@@ -88,7 +89,7 @@ body {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    /*background-color: #322f30;*/
+    color: #fff;
 }
 .fa-linkedin:hover {
     background-color: #0073a4;
@@ -101,7 +102,7 @@ body {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    /*background-color: #322f30;*/
+    color: #fff;
 }
 .fa-github:hover {
     background-color: #808080;
@@ -114,7 +115,7 @@ body {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    /*background-color: #322f30;*/
+    color: #fff;
 }
 .fa-soundcloud:hover {
     background-color: #FF7512;
