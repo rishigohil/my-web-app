@@ -1,7 +1,8 @@
 /**
  * Created by Rishi Gohil on 5/9/2017.
  */
-//Initializing the beast in the room.
+
+//Initializing the beast.
 var myapp = angular.module('my-web-app', ['ngRoute', 'ngAnimate']);
 
 //Configuring the beast to do its job.
@@ -18,7 +19,7 @@ myapp.config(function($routeProvider, $locationProvider) {
 // Giving beast the weapon to perform some hot actions.
 //Part 2 of the beast is coming soon. ;)
 myapp.controller('my-controller', function($scope) {
-    // create a message to display in our view
+    
     $scope.message = 'Coming Soon';
     $scope.myFacebook = {
         Url: 'https://www.facebook.com/rishig10',
