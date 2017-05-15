@@ -19,7 +19,7 @@ myapp.config(function($routeProvider, $locationProvider) {
 // Giving beast the weapon to perform some hot actions.
 //Part 2 of the beast is coming soon. ;)
 myapp.controller('my-controller', function($scope) {
-    
+
     $scope.message = 'Coming Soon';
     $scope.myFacebook = {
         Url: 'https://www.facebook.com/rishig10',
