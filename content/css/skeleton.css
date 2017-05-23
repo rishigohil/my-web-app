@@ -114,12 +114,12 @@
 
 @font-face {
   font-family: robotoFont;
-  src: url(Roboto-Light.ttf);
+  src: url(/content/fonts/Roboto-Light.ttf);
 }
 
 @font-face {
   font-family: openSans;
-  src: url(OpenSans-Regular.ttf);
+  src: url(/content/fonts/OpenSans-Regular.ttf);
 }
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -296,9 +296,12 @@ label > .label-body {
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 ul {
-  list-style: circle inside; }
+  /*list-style: circle inside; */
+  list-style: none;
+}
 ol {
-  list-style: decimal inside; }
+  list-style: decimal inside; 
+}
 ol, ul {
   padding-left: 0;
   margin-top: 0; }
