@@ -1,9 +1,9 @@
 /**
- * Created by Rishi Gohil on 5/9/2017.
+ * Created by Rishi Gohil on 7/19/2017.
  */
 
 //Initializing the beast.
-var myapp = angular.module('my-web-app', ['ngRoute', 'ngAnimate']);
+var myapp = angular.module('my-web-app', ['ngRoute', 'ngAnimate', 'ngSanitize']);
 
 //Configuring the beast to do its job.
 myapp.config(function ($routeProvider, $locationProvider) {
@@ -11,55 +11,76 @@ myapp.config(function ($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl: '/views/home.html',
             controller: 'my-controller'
-        })
-        .when('/profile', {
-            templateUrl: '/views/profile.html',
-            controller: 'profile-controller'
+        }).when('/soon', {
+            templateUrl: '/views/CS.html',
+            controller: 'cs-controller'
         })
 
     $locationProvider.html5Mode(true).hashPrefix('!');
 });
 
-// Giving beast the weapon to perform some hot actions.
-//Part 2 of the beast is coming soon. ;)
-myapp.controller('my-controller', function ($scope) {
+myapp.factory('appData', function ($http) {
+    return {
+        get: function () {
+            return $http.get('/js/app/data.json');
+        }
+    };
+});
+
+myapp.controller('cs-controller', function ($scope) {
     $scope.message = 'Coming Soon';
 })
 
-myapp.controller('profile-controller', function ($scope) {
-    $scope.header = 'Hello!';
+myapp.controller('my-controller', function ($scope, appData) {
+    appData.get().then(function (response) {
+        let result = response.data[0];
+
+        $scope.name = result.name;
+        $scope.designation = result.designation;
+        $scope.currentDesignation = result.currentDesignation;
+        $scope.bio = result.bio;
+        $scope.resumeUrl = result.resumeUrl;
+    });
 })
 
-//If I fits, I sits.
-myapp.directive('mySocialLinksDirective', function (    ) {
+myapp.directive('mySocialLinksDirective', function () {
     return {
         templateUrl: '/views/social.html',
         scope: {},
-        controller: function ($scope) {
-            $scope.myFacebook = {
-                Url: 'https://www.facebook.com/rishig10',
-                Name: "Connect with me on Facebook",
-            };
+        controller: function ($scope, appData) {
+            appData.get().then(function (response) {
+                let result = response.data[0];
+                $scope.myFacebook = {
+                    Url: result.facebook,
+                    Name: "Connect with me on Facebook",
+                };
 
-            $scope.myTwitter = {
-                Url: 'https://twitter.com/rishi_gohil10',
-                Name: "Connect with me on Twitter",
-            };
+                $scope.myTwitter = {
+                    Url: result.twitter,
+                    Name: "Connect with me on Twitter",
+                };
 
-            $scope.myLinkedIn = {
-                Url: 'https://www.linkedin.com/in/rishigohil',
-                Name: "Connect with me on LinkedIn",
-            };
+                $scope.myLinkedIn = {
+                    Url: result.linkedIn,
+                    Name: "Connect with me on LinkedIn",
+                };
 
-            $scope.myGitHub = {
-                Url: 'https://github.com/rishigohil',
-                Name: "Connect with me on GitHub",
-            };
+                $scope.myGitHub = {
+                    Url: result.gitHub,
+                    Name: "Connect with me on GitHub",
+                };
 
-            $scope.mySC = {
-                Url: 'https://soundcloud.com/rishi_gohil',
-                Name: "Connect with me on SoundCloud",
-            };
+                $scope.mySC = {
+                    Url: result.soundCloud,
+                    Name: "Connect with me on SoundCloud",
+                };
+
+                $scope.myMail = {
+                    Url: result.mail,
+                    Name: "Email me at this address.",
+                };
+
+            });
         }
     };
 });

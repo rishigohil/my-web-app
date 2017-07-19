@@ -1,14 +1,30 @@
 <div class="row">
-  <div class="two column top-padding">
-    <div class="container center">
-      <h2>{{message}}</h2>
-
-      <div my-social-links-directive></div>
-
-      <a href="https://drive.google.com/file/d/0BwReR2Ov8DKMc0d2c0ZFejBvTnM/view?usp=sharing" target="_blank" class="btn-download">
-        <i class="fa fa-cloud-download" aria-hidden="true"></i> Resume
-      </a>
-
+    <div class="twelve column top-padding">
+        <div class="container center">
+            <div class="card card">
+                <header name="Summary" class="summary">
+                    <a class="image-link" href="http://rishigohil.com/" target="_blank">
+                        <img src="/content/images/mypic.jpg" alt="{{name}}">
+                    </a>
+                    <h5>{{name}}</h5>
+                    <h6 class="heading">{{designation}}</h6>
+                </header>
+                
+                <section name="Profile Bio" class="profile-bio">
+                    <p ng-bind-html="currentDesignation"></p>
+                    <p>{{bio}}</p>
+                </section>
+                
+                <section name="Social Links">
+                    <div my-social-links-directive></div>
+                </section>
+                
+                <section name="Resume">
+                    <a href="{{resumeUrl}}" target="_blank" class="button">
+                        <i class="fa fa-cloud-download" aria-hidden="true"></i> Resume
+                    </a>
+                </section>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
