@@ -104,11 +104,13 @@ body {
   background-color: #0072c6;
 }
 
-.top-padding {
-  margin-top: 10%
+.not-found .container,
+.profile-card .container{
+  padding: 10% 20px;
 }
 
 .center {
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -119,7 +121,7 @@ body {
   margin: 1rem;
   width: 300px;
   -webkit-animation: fadein 1s linear forwards;
-  animation: fadein 1s linear forwards;
+  animation: fadein 1.5s linear forwards;
 }
 
 .card {
@@ -131,6 +133,17 @@ body {
 .card:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   transform: translate(0, -4px)
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: left;
+  color: #b1b1b1;
+  font-size: 10px;
 }
 
 @-webkit-keyframes fadein {
@@ -161,7 +174,7 @@ body {
   .card {
     width: 95%;
   }
-  .footer{
+  .footer {
     visibility: hidden;
     display: none;
   }
@@ -265,15 +278,3 @@ body {
 .profile-bio p {
   margin-bottom: 1.5rem;
 }
-
-.footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    background: #fafafa;
-    text-align: left;
-    color: #b1b1b1;
-    font-size: 10px;
-  }

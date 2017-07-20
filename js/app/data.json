@@ -2,12 +2,37 @@
     "name": "Rishi Gohil",
     "designation": "Software Engineer/Consultant",
     "currentDesignation": "I am a Software Developer at <a class=\"company-link\" href=\"https://business.fau.edu\" target=\"_blank\">FAU</a>",
-    "bio": "I am an ardent Technologist, Melomaniac and Gourmet. I spend most of my time writing code and listening to house music.",
-    "facebook": "https://www.facebook.com/rishig10",
-    "twitter": "https://twitter.com/rishi_gohil10",
-    "linkedIn": "https://www.linkedin.com/in/rishigohil",
-    "gitHub": "https://github.com/rishigohil",
-    "soundCloud": "https://soundcloud.com/rishi_gohil",
-    "mail": "mailto:rishi.gohil@live.com",
-    "resumeUrl": "https://drive.google.com/file/d/0BwReR2Ov8DKMc0d2c0ZFejBvTnM/view?usp=sharing"
+    "bio": "I am an ardent Technologist, Melomaniac, and Gourmet. I spend most of my time writing code and listening to house music.",
+    "resumeUrl": "https://drive.google.com/file/d/0BwReR2Ov8DKMc0d2c0ZFejBvTnM/view?usp=sharing",
+    "socialLinks": [{
+            "name": "facebook",
+            "url": "https://www.facebook.com/rishig10",
+            "alt": "Connect with me on Facebook"
+        },
+        {
+            "name": "twitter",
+            "url": "https://twitter.com/rishi_gohil10",
+            "alt": "Connect with me on Twitter"
+        },
+        {
+            "name": "linkedin",
+            "url": "https://www.linkedin.com/in/rishigohil",
+            "alt": "Connect with me on LinkedIn"
+        },
+        {
+            "name": "github",
+            "url": "https://github.com/rishigohil",
+            "alt": "Connect with me on GitHub"
+        },
+        {
+            "name": "soundcloud",
+            "url": "https://soundcloud.com/rishi_gohil",
+            "alt": "Connect with me on SoundCloud"
+        },
+        {
+            "name": "envelope",
+            "url": "mailto:rishi.gohil@live.com",
+            "alt": "Click here to Email me"
+        }
+    ]
 }]

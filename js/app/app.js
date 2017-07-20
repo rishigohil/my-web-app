@@ -5,20 +5,21 @@
 //Initializing the beast.
 var myapp = angular.module('my-web-app', ['ngRoute', 'ngAnimate', 'ngSanitize']);
 
-//Configuring the beast to do its job.
+//Lets pave the way for the beast.
 myapp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/views/home.html',
             controller: 'my-controller'
-        }).when('/soon', {
-            templateUrl: '/views/CS.html',
-            controller: 'cs-controller'
+        }).otherwise({
+            templateUrl: '/views/404.html',
+            controller: 'not-found-controller'
         })
 
     $locationProvider.html5Mode(true).hashPrefix('!');
 });
 
+//Providing the weapons to the beast.
 myapp.factory('appData', function ($http) {
     return {
         get: function () {
@@ -26,10 +27,6 @@ myapp.factory('appData', function ($http) {
         }
     };
 });
-
-myapp.controller('cs-controller', function ($scope) {
-    $scope.message = 'Coming Soon';
-})
 
 myapp.controller('my-controller', function ($scope, appData) {
     appData.get().then(function (response) {
@@ -49,38 +46,16 @@ myapp.directive('mySocialLinksDirective', function () {
         scope: {},
         controller: function ($scope, appData) {
             appData.get().then(function (response) {
-                let result = response.data[0];
-                $scope.myFacebook = {
-                    Url: result.facebook,
-                    Name: "Connect with me on Facebook",
-                };
-
-                $scope.myTwitter = {
-                    Url: result.twitter,
-                    Name: "Connect with me on Twitter",
-                };
-
-                $scope.myLinkedIn = {
-                    Url: result.linkedIn,
-                    Name: "Connect with me on LinkedIn",
-                };
-
-                $scope.myGitHub = {
-                    Url: result.gitHub,
-                    Name: "Connect with me on GitHub",
-                };
-
-                $scope.mySC = {
-                    Url: result.soundCloud,
-                    Name: "Connect with me on SoundCloud",
-                };
-
-                $scope.myMail = {
-                    Url: result.mail,
-                    Name: "Email me at this address.",
-                };
-
+                let result = response.data[0].socialLinks;
+                $scope.socialData = result;
             });
         }
     };
 });
+
+myapp.controller('not-found-controller', function ($scope, $location) {
+    $scope.path = $location.path();
+    $scope.back = function() {
+        history.back();
+    };
+})

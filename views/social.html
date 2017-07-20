@@ -1,33 +1,8 @@
 <div class="footer-social-icons">
   <ul class="social-icons">
-    <li>
-      <a href="{{myFacebook.Url}}" title="{{myFacebook.Name}}" target="_blank" class="social-icon">
-        <i class="fa fa-facebook icons"></i>
-      </a>
-    </li>
-    <li>
-      <a href="{{myTwitter.Url}}" title="{{myTwitter.Name}}" target="_blank" class="social-icon">
-        <i class="fa fa-twitter icons"></i>
-      </a>
-    </li>
-    <li>
-      <a href="{{myLinkedIn.Url}}" title="{{myLinkedIn.Name}}" target="_blank" class="social-icon">
-        <i class="fa fa-linkedin icons"></i>
-      </a>
-    </li>
-    <li>
-      <a href="{{myGitHub.Url}}" title="{{myGitHub.Name}}" target="_blank" class="social-icon">
-        <i class="fa fa-github icons"></i>
-      </a>
-    </li>
-    <li>
-      <a href="{{mySC.Url}}" title="{{mySC.Name}}" target="_blank" class="social-icon">
-        <i class="fa fa-soundcloud icons"></i>
-      </a>
-    </li>
-      <li>
-      <a href="{{myMail.Url}}" title="{{myMail.Name}}" class="social-icon">
-        <i class="fa fa-envelope icons"></i>
+    <li ng-repeat="item in socialData">
+      <a href="{{item.url}}" title="{{item.alt}}" target="_blank" class="social-icon">
+        <i class="fa fa-{{item.name}} icons"></i>
       </a>
     </li>
   </ul>
