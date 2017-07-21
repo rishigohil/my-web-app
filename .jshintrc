@@ -1,0 +1,10 @@
+{
+    "esversion": 6,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "maxdepth": 3,
+    "unused": true,
+    "plusplus": true,
+    "quotmark": "single"
+}

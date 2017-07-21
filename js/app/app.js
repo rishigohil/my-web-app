@@ -14,7 +14,7 @@ myapp.config(function ($routeProvider, $locationProvider) {
         }).otherwise({
             templateUrl: '/views/404.html',
             controller: 'not-found-controller'
-        })
+        });
 
     $locationProvider.html5Mode(true).hashPrefix('!');
 });
@@ -38,7 +38,7 @@ myapp.controller('my-controller', function ($scope, appData) {
         $scope.bio = result.bio;
         $scope.resumeUrl = result.resumeUrl;
     });
-})
+});
 
 myapp.directive('mySocialLinksDirective', function () {
     return {
@@ -55,7 +55,7 @@ myapp.directive('mySocialLinksDirective', function () {
 
 myapp.controller('not-found-controller', function ($scope, $location) {
     $scope.path = $location.path();
-    $scope.back = function() {
+    $scope.back = function () {
         history.back();
     };
-})
+});
