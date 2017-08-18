@@ -230,25 +230,29 @@ body {
   display: block;
 }
 
-.summary .image-link {
+.dp-container{
+  background: url('/content/images/mypic.jpg') no-repeat;
   display: inline-block;
-  text-align: center;
-  position: relative;
   margin: 10px 30px;
-}
-
-.summary .image-link>img {
-  width: 120px;
-  max-width: 100%;
   border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  background-size: 120px 120px;
   box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.06);
   -webkit-transition: box-shadow 0.3s ease;
   -moz-transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease;
 }
 
-.summary .image-link:hover>img {
+.dp-container:hover {
   box-shadow: 0px 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dp-container a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
 }
 
 .summary .profile-nickname {
