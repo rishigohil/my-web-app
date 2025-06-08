@@ -1,27 +1,39 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
-        "es6": true,
+        "es2021": true,
         "node": true,
-        "jasmine": true
+        "jest": true
     },
+    "extends": [
+        "react-app"
+    ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
+        "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "@typescript-eslint"
+    ],
     "rules": {
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
-        "no-undef": "warn",
         "no-unreachable": "warn",
-        "no-unused-vars": "warn",
         "constructor-super": "warn",
-        "valid-typeof": "warn"
+        "valid-typeof": "warn",
+        "react/react-in-jsx-scope": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn"
     },
-    "globals": {
-        "angular": true
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

@@ -6,6 +6,52 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Flash animation for links */
+.flash-link {
+  animation: flash 1s ease-in-out;
+  cursor: pointer !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.flash-link a {
+  color: inherit !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.flash-link a:hover {
+  cursor: pointer !important;
+}
+
+@keyframes flash {
+  0% { 
+    background-color: transparent; 
+    box-shadow: none;
+  }
+  25% { 
+    background-color: #ffeb3b; 
+    box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+    transform: scale(1.02);
+  }
+  50% { 
+    background-color: #ffc107; 
+    box-shadow: 0 0 15px #ffc107, 0 0 25px #ffc107;
+    transform: scale(1.05);
+  }
+  75% { 
+    background-color: #ffeb3b; 
+    box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+    transform: scale(1.02);
+  }
+  100% { 
+    background-color: transparent; 
+    box-shadow: none;
+    transform: scale(1);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -324,4 +370,66 @@ body {
 
 .profile-bio p {
   margin-bottom: 1.5rem;
+}
+
+/* CSS Custom Properties for cursor theming */
+:root {
+  --cursor-color-primary: #00ff00;
+  --cursor-color-secondary: #004400;
+  --cursor-color-heartbeat: #ff0080;
+  --cursor-color-heartbeat-dim: #cc0066;
+  --cursor-size: 0.6em;
+  --cursor-height: 1.2em;
+  --cursor-glow-size: 3px;
+}
+
+/* Retro typewriter cursor */
+.cursor {
+  display: inline-block;
+  background-color: var(--cursor-color-primary);
+  color: transparent;
+  font-family: 'Courier New', monospace;
+  width: var(--cursor-size);
+  height: var(--cursor-height);
+  vertical-align: baseline;
+  border-radius: 1px;
+  box-shadow: 
+    0 0 var(--cursor-glow-size) var(--cursor-color-primary),
+    0 0 calc(var(--cursor-glow-size) * 2) var(--cursor-color-primary),
+    inset 0 0 var(--cursor-glow-size) var(--cursor-color-primary);
+  animation: cursor-blink 1s infinite;
+  margin-left: 1px;
+  position: relative;
+  top: 0.1em;
+}
+
+.cursor.heartbeat {
+  --cursor-color-primary: var(--cursor-color-heartbeat);
+  animation: cursor-heartbeat 1.2s infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+    background-color: var(--cursor-color-secondary);
+  }
+}
+
+@keyframes cursor-heartbeat {
+  0%, 70%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  14%, 42% {
+    opacity: 0.6;
+    transform: scale(0.85);
+    background-color: var(--cursor-color-heartbeat-dim);
+  }
+  28% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
