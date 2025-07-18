@@ -5,7 +5,7 @@
 //Initializing the beast.
 var myapp = angular.module('my-web-app', ['ngRoute', 'ngAnimate', 'ngSanitize']);
 
-//Lets pave the way for the beast.
+//Let’s pave the way for the beast.
 myapp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
