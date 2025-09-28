@@ -3,3 +3,5 @@ aspnet_client/
 App_Data/
 .vscode/
 *.config
+node_modules/
+.next/
