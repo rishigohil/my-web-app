@@ -49,7 +49,7 @@ public/                       # favicon, profile pic, robots.txt, ai.txt
 archive/                      # legacy AngularJS source — gitignored from new builds
 ```
 
-## Deploying to Cloudflare Pages
+## Deploy
 
 | Setting          | Value           |
 | ---------------- | --------------- |
@@ -60,16 +60,6 @@ archive/                      # legacy AngularJS source — gitignored from new 
 
 No SSR adapter is configured. The site is fully static — `npm run build`
 produces a `dist/` directory that Cloudflare Pages can serve as-is.
-
-## Anti-AI-scraper policy
-
-- `public/robots.txt` lists known LLM training/retrieval bots with
-  `Disallow: /` while preserving `index, nofollow` defaults for general
-  crawlers.
-- `public/.well-known/ai.txt` is a human-readable policy. Permission
-  requests are directed to the WHOIS contact for the domain.
-- `BaseLayout.astro` includes `noai, noimageai` meta tags for crawlers
-  that ignore `robots.txt`.
 
 ## Quality bar
 
