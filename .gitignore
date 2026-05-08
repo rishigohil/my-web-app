@@ -5,3 +5,12 @@ App_Data/
 *.config
 node_modules/
 .next/
+
+# Build output
+dist/
+.astro/
+
+# Legacy AngularJS source — kept committed for reference, but excluded from
+# new builds and tooling. Already-tracked files inside archive/ are
+# unaffected by this entry.
+archive/
