@@ -34,14 +34,12 @@ const {
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="min-h-screen text-zinc-900">
+  <body>
     <main id="main">
       <slot />
     </main>
 
-    <footer
-      class="fixed inset-x-0 bottom-0 hidden p-4 text-left text-[10px] text-[#b1b1b1] sm:block"
-    >
+    <footer class="site-footer">
       <span>© {new Date().getFullYear()} Rishi Gohil</span>
     </footer>
   </body>

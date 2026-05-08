@@ -7,67 +7,36 @@ const { name, designation, currentDesignation, bio, resumeUrl } =
   profileData[0];
 ---
 
-<div class="flex min-h-screen items-center justify-center px-5 py-[10%]">
+<div class="profile-card">
   <CardEntry client:load>
-    <article
-      class="card group inline-block w-[300px] max-w-[95%] rounded-lg bg-white text-center"
-    >
-      <header class="block px-5 pt-5">
-        <div
-          class="dp-container mx-auto my-2.5 inline-block h-[120px] w-[120px] rounded-full bg-[url('/mypic.jpg')] bg-cover bg-center"
-          role="img"
-          aria-label={name}
-        >
-          <a
-            class="block h-full w-full"
-            href="/"
-            title={name}
-            aria-label={name}
-          ></a>
+    <article class="card">
+      <header class="summary">
+        <div class="dp-container" role="img" aria-label={name}>
+          <a class="image-link" href="/" title={name} aria-label={name}></a>
         </div>
-
-        <h5 class="mt-2 text-[18px] font-medium text-zinc-900">
-          {name}
-        </h5>
-        <h6 class="text-sm text-[grey]">{designation}</h6>
+        <h5 class="profile-name">{name}</h5>
+        <h6 class="heading">{designation}</h6>
       </header>
 
-      <section class="bio block px-5 pt-4 pb-0 text-[#333333]">
-        <p class="mb-6" set:html={currentDesignation} />
-        <p class="mb-6">{bio}</p>
+      <section class="bio">
+        <p set:html={currentDesignation} />
+        <p>{bio}</p>
       </section>
 
-      <section class="px-5 pb-1">
+      <section class="socials">
         <SocialLinks />
       </section>
 
-      <section class="px-5 pt-2 pb-6">
+      <section class="resume-action">
         <a
           href={resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded border border-zinc-300 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-zinc-700 hover:border-zinc-900 hover:text-zinc-900"
+          class="button button-resume"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            width="14"
-            height="14"
-            aria-hidden="true"
-          >
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
           Resume
         </a>
       </section>
     </article>
   </CardEntry>
 </div>
-
