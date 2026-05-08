@@ -1,11 +1,10 @@
 ---
 import CardEntry from "./CardEntry.tsx";
 import SocialLinks from "./SocialLinks.astro";
+import profileData from "../data/profile.json";
 
-const name = "Rishi Gohil";
-const designation = "Senior Software Engineer";
-const resumeUrl =
-  "https://drive.google.com/file/d/0BwReR2Ov8DKMdzByZE1ZQS1TcVk/view?usp=sharing&resourcekey=0-bdPC317bEVdkUSFnsyI8VQ";
+const { name, designation, currentDesignation, bio, resumeUrl } =
+  profileData[0];
 ---
 
 <div class="flex min-h-screen items-center justify-center px-5 py-[10%]">
@@ -34,18 +33,8 @@ const resumeUrl =
       </header>
 
       <section class="bio block px-5 pt-4 pb-0 text-[#333333]">
-        <p class="mb-6">
-          I am a Sr. Software Engineer at <a
-            class="company-link"
-            href="https://www.anthologyinc.com"
-            target="_blank"
-            rel="noopener noreferrer">Anthology</a
-          >
-        </p>
-        <p class="mb-6">
-          I am an ardent Technologist, Melomaniac, and Gourmet. I spend most
-          of my time writing code and listening to house music.
-        </p>
+        <p class="mb-6" set:html={currentDesignation} />
+        <p class="mb-6">{bio}</p>
       </section>
 
       <section class="px-5 pb-1">
