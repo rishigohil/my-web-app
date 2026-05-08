@@ -131,12 +131,6 @@ body {
 .dp-container:hover {
   box-shadow: 0 0 0 12px rgba(0, 0, 0, 0.1);
 }
-.dp-container .image-link {
-  display: block;
-  height: 100%;
-  width: 100%;
-  text-decoration: none;
-}
 
 /* ──────────────────────────────────────────────────────────────
    Bio. Links own the underline they walk on — two pseudo-elements,
@@ -379,4 +373,58 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Reduced motion. If the browser asks us to settle down, we do.
+   The bounceIn entry is also short-circuited inside CardEntry.tsx;
+   this rule covers the underlying CSS transitions.
+   ────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Print. Take off the makeup and stand still.
+   ────────────────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: #fff !important;
+  }
+  .site-footer {
+    display: none;
+  }
+  .card {
+    box-shadow: none;
+    transform: none !important;
+    margin: 0;
+  }
+  .card:hover {
+    box-shadow: none;
+    transform: none;
+  }
+  .icon,
+  .button {
+    color: #000 !important;
+    background: transparent !important;
+    border-color: #000 !important;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-wrap: break-word;
+  }
+  /* But not for hash, mailto, or javascript links — that's noise. */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after,
+  a[href^="mailto:"]::after {
+    content: "";
+  }
 }

@@ -11,9 +11,7 @@ const { name, designation, currentDesignation, bio, resumeUrl } =
   <CardEntry client:load>
     <article class="card">
       <header class="summary">
-        <div class="dp-container" role="img" aria-label={name}>
-          <a class="image-link" href="/" title={name} aria-label={name}></a>
-        </div>
+        <div class="dp-container" role="img" aria-label={name}></div>
         <h5 class="profile-name">{name}</h5>
         <h6 class="heading">{designation}</h6>
       </header>

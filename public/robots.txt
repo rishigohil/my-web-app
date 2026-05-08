@@ -6,6 +6,8 @@ User-agent: *
 Allow: /
 Disallow:
 
+Sitemap: https://rishigohil.com/sitemap.xml
+
 # ------------------------------------------------------------------
 # AI / LLM training and retrieval crawlers — disallowed.
 #
@@ -105,9 +107,6 @@ User-agent: AwarioSmartBot
 Disallow: /
 
 User-agent: DataForSeoBot
-Disallow: /
-
-User-agent: ImagesiftBot
 Disallow: /
 
 User-agent: PanguBot
