@@ -15,4 +15,5 @@
 # Disallow-Training: *
 # Disallow-AI: *
 #
-# To request permission, contact: rishi.gohil@live.com
+# To request permission, check the WHOIS record for this domain and
+# reach out to the contact listed there.
