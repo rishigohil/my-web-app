@@ -1,0 +1,430 @@
+/* ──────────────────────────────────────────────────────────────
+   clothes.css — what the markup wears today.
+   The previous outfit (Skeleton + the original clothes.css) is
+   hanging in archive/ in case fashion ever cycles back around.
+   Astro components stay slim; the styling lives here, where it
+   can be reasoned about without reading JSX.
+   ────────────────────────────────────────────────────────────── */
+
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The dotted SVG background — lifted verbatim from the original
+   clothes.css. White-on-white can't read; this gives the page a pulse. */
+body {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23d8d8d8' fill-opacity='0.3' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Page-to-page costume changes — snappy, no fashion show. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Page wrappers — center things, give them air.
+   ────────────────────────────────────────────────────────────── */
+.profile-card,
+.not-found {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 10% 1.25rem;
+}
+
+.not-found {
+  text-align: center;
+}
+.not-found h2 {
+  font-size: 1.875rem;
+  font-weight: 500;
+  color: #18181b;
+  margin: 0;
+}
+.not-found h4 {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: #27272a;
+}
+.not-found h5 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #3f3f46;
+}
+.not-found .actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   The card — idle, then briefly flattered on hover.
+   ────────────────────────────────────────────────────────────── */
+.card {
+  display: inline-block;
+  width: 300px;
+  max-width: 95%;
+  margin: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+/* On hover the card stands four pixels taller, like it heard a compliment. */
+.card:hover {
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: translate(0, -4px);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Summary header — avatar, name, role.
+   ────────────────────────────────────────────────────────────── */
+.summary {
+  display: block;
+  padding: 1.25rem 1.25rem 0;
+}
+.summary .profile-name {
+  margin: 0.5rem 0 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #18181b;
+}
+.summary .heading {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: grey;
+}
+
+/* Profile picture — a small ring of confidence that grows when
+   you look it in the eye. */
+.dp-container {
+  display: inline-block;
+  margin: 0.625rem 1.875rem;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  background: url("/mypic.jpg") no-repeat center / cover;
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+.dp-container:hover {
+  box-shadow: 0 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Bio. Links own the underline they walk on — two pseudo-elements,
+   one to paint the line in, one to quietly clean up after.
+   ────────────────────────────────────────────────────────────── */
+.bio {
+  display: block;
+  padding: 1rem 1.25rem 0;
+  color: #333333;
+}
+.bio p {
+  margin: 0 0 1.5rem;
+}
+.bio a {
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+.bio a::before,
+.bio a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  background: #000;
+}
+.bio a::before {
+  left: 0;
+}
+.bio a::after {
+  right: 0;
+  transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.bio a:hover::before {
+  width: 100%;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.bio a:hover::after {
+  background: transparent;
+  width: 100%;
+  transition: 0s;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Card sections under the bio — socials, then the resume button.
+   ────────────────────────────────────────────────────────────── */
+.socials {
+  padding: 0 1.25rem 0.25rem;
+}
+.resume-action {
+  padding: 0.5rem 1.25rem 1.5rem;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Buttons — the same coat in two situations.
+   ────────────────────────────────────────────────────────────── */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d4d4d8;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: #3f3f46;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+.button:hover {
+  border-color: #18181b;
+  color: #18181b;
+}
+.button-square {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Icons. CSS masks instead of inline SVG, so the markup stays
+   prose-shaped and icons inherit currentColor without a fight.
+   Each glyph is the smallest opaque path that draws it. The
+   ::before-glyph plumbing is defined once at the bottom of this
+   file; each icon class only declares its own mask + size below.
+   ────────────────────────────────────────────────────────────── */
+
+/* 404 page actions: a left-arrow circle and a house. */
+.icon-back {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 8 8 12 12 16'/%3E%3Cline x1='16' y1='12' x2='8' y2='12'/%3E%3C/svg%3E");
+}
+.icon-home {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12 12 3l9 9'/%3E%3Cpath d='M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10'/%3E%3C/svg%3E");
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Social icons. Everyone wears black to the party. On hover each
+   one changes into its own brand uniform. No two networks share a
+   wardrobe.
+   ────────────────────────────────────────────────────────────── */
+.social-icons {
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+}
+.social-icons li {
+  display: inline-block;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #000;
+  text-decoration: none;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+.icon-facebook {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.5-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12z'/%3E%3C/svg%3E");
+}
+.icon-facebook:hover {
+  color: #fff;
+  background-color: #3d5b99;
+} /* navy, predictably. */
+
+.icon-twitter {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.4 3.9A12.14 12.14 0 0 1 3 4.79a4.28 4.28 0 0 0 1.32 5.71 4.27 4.27 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.97A8.6 8.6 0 0 1 2 19.07a12.13 12.13 0 0 0 6.57 1.93c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.37-.01-.56A8.7 8.7 0 0 0 22.46 6z'/%3E%3C/svg%3E");
+}
+.icon-twitter:hover {
+  color: #fff;
+  background-color: #00aced;
+} /* the original Twitter blue — before the rebrand and the lawyers. */
+
+.icon-linkedin {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.78 24h20.44c.99 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.22 0z'/%3E%3C/svg%3E");
+}
+.icon-linkedin:hover {
+  color: #fff;
+  background-color: #0073a4;
+} /* a slightly more serious blue. suit-and-tie. */
+
+.icon-github {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.22.7.83.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+}
+.icon-github:hover {
+  color: #fff;
+  background-color: #808080;
+} /* grey, like a cubicle. */
+
+.icon-soundcloud {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.18 14.74c.07 0 .12-.05.13-.12l.27-2.13-.27-2.18a.13.13 0 0 0-.13-.12c-.07 0-.13.05-.14.12L.7 12.49l.34 2.13c.01.07.07.12.14.12zm1.31.46c.07 0 .12-.05.13-.13l.36-2.59-.36-2.66a.14.14 0 0 0-.27 0L2 12.48l.35 2.59c0 .08.07.13.14.13zm1.36.18c.08 0 .15-.06.16-.14l.34-2.77-.34-2.86a.16.16 0 0 0-.32 0L3.4 12.5l.3 2.74c.01.08.08.14.16.14zm1.39.05c.09 0 .16-.07.17-.16l.32-2.77-.32-2.92a.17.17 0 0 0-.34 0L4.79 12.5l.3 2.77c.01.09.08.16.17.16zm1.4-.04c.1 0 .18-.08.19-.18l.3-2.71-.3-2.87a.19.19 0 0 0-.38 0l-.27 2.87.27 2.71c.01.1.09.18.19.18zm1.41-.07c.11 0 .2-.09.2-.2l.28-2.62-.28-2.83a.2.2 0 0 0-.41 0l-.25 2.83.25 2.62c.01.11.1.2.21.2zm1.41.04c.12 0 .22-.1.22-.22l.27-2.59-.27-2.96a.22.22 0 0 0-.44 0l-.24 2.96.24 2.59c0 .12.1.22.22.22zm1.42.05c.13 0 .23-.1.23-.23l.25-2.55-.25-3.13a.23.23 0 0 0-.46 0l-.22 3.13.22 2.55c0 .13.1.23.23.23zm1.5.02c.13 0 .24-.11.25-.25l.23-2.51-.23-3.36a.25.25 0 0 0-.5 0l-.2 3.36.2 2.51c.01.14.12.25.25.25zm9.62-3.51c-.6 0-1.18.13-1.69.36-.34-3.84-3.55-6.86-7.46-6.86-.96 0-1.89.18-2.74.5-.33.13-.42.26-.42.51v9.6c0 .28.21.49.48.51h11.83c2.16 0 3.91-1.74 3.91-3.91 0-2.16-1.75-3.91-3.91-3.91z'/%3E%3C/svg%3E");
+}
+.icon-soundcloud:hover {
+  color: #fff;
+  background-color: #ff7512;
+} /* loud orange. on-brand. */
+
+.icon-envelope {
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v.32l-10 5.83-10-5.83V6.5zm0 2.4v8.6A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8.9l-9.5 5.54a1 1 0 0 1-1 0L2 8.9z'/%3E%3C/svg%3E");
+}
+.icon-envelope:hover {
+  color: #fff;
+  background-color: #0072c6;
+} /* office-suite blue. */
+
+/* All social/action icons share the mask plumbing. */
+.icon,
+.button-square,
+.button-resume {
+  /* Each one declares its own --icon-mask above; the ::before glyph is
+     drawn here in one rule so we don't repeat the dance per network. */
+}
+.icon::before,
+.button-square::before,
+.button-resume::before {
+  content: "";
+  display: inline-block;
+  width: var(--icon-size, 18px);
+  height: var(--icon-size, 18px);
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon-mask);
+  mask-image: var(--icon-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.button-resume {
+  --icon-size: 14px;
+  --icon-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' y1='15' x2='12' y2='3'/%3E%3C/svg%3E");
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Site footer — small, grey, sits in the corner like it's nine
+   o'clock on a Tuesday. Mirrors the legacy `.footer`.
+   ────────────────────────────────────────────────────────────── */
+.site-footer {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 1rem;
+  text-align: left;
+  font-size: 10px;
+  color: #b1b1b1;
+}
+@media (max-width: 550px) {
+  .site-footer {
+    display: none;
+  }
+}
+
+/* sr-only — text the eye doesn't see, the screen reader does. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Reduced motion. If the browser asks us to settle down, we do.
+   The bounceIn entry is also short-circuited inside CardEntry.tsx;
+   this rule covers the underlying CSS transitions.
+   ────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Print. Take off the makeup and stand still.
+   ────────────────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: #fff !important;
+  }
+  .site-footer {
+    display: none;
+  }
+  .card {
+    box-shadow: none;
+    transform: none !important;
+    margin: 0;
+  }
+  .card:hover {
+    box-shadow: none;
+    transform: none;
+  }
+  .icon,
+  .button {
+    color: #000 !important;
+    background: transparent !important;
+    border-color: #000 !important;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-wrap: break-word;
+  }
+  /* But not for hash, mailto, or javascript links — that's noise. */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after,
+  a[href^="mailto:"]::after {
+    content: "";
+  }
+}

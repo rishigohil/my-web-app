@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Not found" description="Page not found.">
+  <div class="not-found">
+    <div>
+      <h2 aria-hidden="true">(╯°□°)╯︵ ┻━┻</h2>
+      <h4><strong>Whoops!</strong> You are at the Wrong Address.</h4>
+      <h5>Lets get you home.</h5>
+      <div class="actions">
+        <button
+          type="button"
+          data-back
+          class="button button-square icon-back"
+          aria-label="Go back"
+          title="Go back"
+        ></button>
+        <a
+          href="/"
+          class="button button-square icon-home"
+          aria-label="Home"
+          title="Home"
+        ></a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function bind() {
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-back]")
+      .forEach((btn) => {
+        if (btn.dataset.bound) return;
+        btn.dataset.bound = "true";
+        btn.addEventListener("click", () => history.back());
+      });
+  }
+  bind();
+  document.addEventListener("astro:after-swap", bind);
+</script>

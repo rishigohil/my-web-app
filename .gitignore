@@ -1,7 +1,25 @@
-web.config
-aspnet_client/
-App_Data/
-.vscode/
-*.config
+# Build output
+dist/
+.astro/
+
+# Dependencies
 node_modules/
-.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.production
+
+# OS / IDE
+.DS_Store
+.idea/
+
+# Legacy AngularJS source — kept committed for reference, but excluded from
+# new builds and tooling. Already-tracked files inside archive/ are
+# unaffected by this entry.
+archive/

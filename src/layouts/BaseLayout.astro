@@ -1,0 +1,95 @@
+---
+import "../styles/clothes.css";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "I'm Rishi Gohil",
+  description = "Personal website of Rishi Gohil.",
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL("/mypic.jpg", Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="software engineer, software developer, california, florida, south florida, boston, programmer, bigdata, development"
+    />
+    <meta name="author" content="Rishi Gohil" />
+    <meta name="robots" content="index, nofollow, noai, noimageai" />
+    <meta name="googlebot" content="noai, noimageai" />
+    <meta name="ChatGPT-User" content="noindex" />
+    <meta name="GPTBot" content="noindex" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rishi Gohil" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <title>{title}</title>
+    <ClientRouter />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FRQPMBZETY"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag("js", new Date());
+    </script>
+    <!-- Track every page-load event — initial load AND subsequent
+         Astro view-transition navigations. Bound once, idempotent. -->
+    <script is:inline>
+      if (!window.__gaListenerBound) {
+        window.__gaListenerBound = true;
+        document.addEventListener("astro:page-load", function () {
+          if (typeof window.gtag === "function") {
+            window.gtag("config", "G-FRQPMBZETY", {
+              page_path:
+                window.location.pathname + window.location.search,
+            });
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} Rishi Gohil</span>
+    </footer>
+  </body>
+</html>

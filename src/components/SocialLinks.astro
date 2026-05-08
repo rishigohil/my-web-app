@@ -1,0 +1,25 @@
+---
+import profileData from "../data/profile.json";
+
+const links = profileData[0].socialLinks;
+---
+
+<ul class="social-icons">
+  {
+    links.map((item) => {
+      const isMail = item.url.startsWith("mailto:");
+      return (
+        <li>
+          <a
+            href={item.url}
+            title={item.alt}
+            aria-label={item.alt}
+            target={isMail ? undefined : "_blank"}
+            rel={isMail ? undefined : "noopener noreferrer"}
+            class:list={["icon", `icon-${item.name}`]}
+          />
+        </li>
+      );
+    })
+  }
+</ul>

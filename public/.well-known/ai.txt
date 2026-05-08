@@ -1,0 +1,19 @@
+# AI / LLM training and retrieval policy for rishigohil.com
+#
+# All content on this site is ©  Rishi Gohil. AI agents, web scrapers,
+# and dataset crawlers are NOT permitted to ingest, index, train on,
+# fine-tune from, summarize, or otherwise reuse any text, images,
+# code, or other content from this domain or its subdomains, in whole
+# or in part, for any model training or generative-AI retrieval
+# purpose, without prior written permission.
+#
+# This applies to crawls labeled for "search", "retrieval-augmented
+# generation", "AI assistants", "training data", "fine-tuning",
+# "evaluation", and any equivalent or successor terminology.
+#
+# Disallow: /
+# Disallow-Training: *
+# Disallow-AI: *
+#
+# To request permission, check the WHOIS record for this domain and
+# reach out to the contact listed there.

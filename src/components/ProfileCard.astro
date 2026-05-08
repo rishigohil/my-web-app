@@ -1,0 +1,40 @@
+---
+import CardEntry from "./CardEntry.tsx";
+import SocialLinks from "./SocialLinks.astro";
+import profileData from "../data/profile.json";
+
+const { name, designation, currentDesignation, bio, resumeUrl } =
+  profileData[0];
+---
+
+<div class="profile-card">
+  <CardEntry client:load>
+    <article class="card">
+      <header class="summary">
+        <div class="dp-container" role="img" aria-label={name}></div>
+        <h5 class="profile-name">{name}</h5>
+        <h6 class="heading">{designation}</h6>
+      </header>
+
+      <section class="bio">
+        <p set:html={currentDesignation} />
+        <p>{bio}</p>
+      </section>
+
+      <section class="socials">
+        <SocialLinks />
+      </section>
+
+      <section class="resume-action">
+        <a
+          href={resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button button-resume"
+        >
+          Resume
+        </a>
+      </section>
+    </article>
+  </CardEntry>
+</div>
