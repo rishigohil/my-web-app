@@ -1,0 +1,143 @@
+/* ──────────────────────────────────────────────────────────────
+   clothes.css — what the markup wears today.
+   The previous outfit (Skeleton + the original clothes.css) is
+   hanging in archive/ in case fashion ever cycles back around.
+   ────────────────────────────────────────────────────────────── */
+
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Base layer. Trousers, basically. */
+html,
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The dotted SVG background — lifted verbatim from the original
+   clothes.css. White-on-white can't read; this gives the page a pulse. */
+body {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23d8d8d8' fill-opacity='0.3' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Page-to-page costume changes — snappy, no fashion show. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   The card — idle, then briefly flattered on hover.
+   ────────────────────────────────────────────────────────────── */
+.card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* On hover the card stands four pixels taller, like it heard a compliment. */
+.card:hover {
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: translate(0, -4px);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Profile picture — a small ring of confidence that grows when
+   you look it in the eye.
+   ────────────────────────────────────────────────────────────── */
+.dp-container {
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+.dp-container:hover {
+  box-shadow: 0 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Bio links own the underline they walk on. Two pseudo-elements:
+   one paints the line in, the other quietly cleans up after.
+   ────────────────────────────────────────────────────────────── */
+.bio a {
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+.bio a::before,
+.bio a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  background: #000;
+}
+.bio a::before {
+  left: 0;
+}
+.bio a::after {
+  right: 0;
+  transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.bio a:hover::before {
+  width: 100%;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.bio a:hover::after {
+  background: transparent;
+  width: 100%;
+  transition: 0s;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Social icons. Everyone wears black to the party. On hover each
+   one changes into its own brand uniform. No two networks share a
+   wardrobe.
+   ────────────────────────────────────────────────────────────── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #000;
+  text-decoration: none;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+.icon-facebook:hover {
+  color: #fff;
+  background-color: #3d5b99;
+} /* navy, predictably. */
+.icon-twitter:hover {
+  color: #fff;
+  background-color: #00aced;
+} /* the original Twitter blue, before the rebrand and the lawyers. */
+.icon-linkedin:hover {
+  color: #fff;
+  background-color: #0073a4;
+} /* a slightly more serious blue. suit-and-tie. */
+.icon-github:hover {
+  color: #fff;
+  background-color: #808080;
+} /* grey, like a cubicle. */
+.icon-soundcloud:hover {
+  color: #fff;
+  background-color: #ff7512;
+} /* loud orange. on-brand. */
+.icon-envelope:hover {
+  color: #fff;
+  background-color: #0072c6;
+} /* office-suite blue. */
