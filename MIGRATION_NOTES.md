@@ -133,7 +133,10 @@ routes — all of that content lives on the home card, just like before.
 
 ## Behavior dropped intentionally
 
-- Google Analytics (`UA-98865326-1`) — per migration brief: no analytics.
+- Google Analytics (`UA-98865326-1`, the legacy Universal Analytics
+  property) — UA was sunset in July 2023. Replaced with GA4 (`G-FRQPMBZETY`)
+  wired through `astro:page-load` so view-transition navigations are
+  tracked correctly without double-counting the initial pageview.
 - AngularJS, ngRoute, ngAnimate, ngSanitize, jQuery-style transitions.
 - Skeleton + normalize + Font Awesome CDN — replaced by Tailwind + inline
   SVG icons.
