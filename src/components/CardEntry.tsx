@@ -5,12 +5,6 @@ interface Props {
   children: ReactNode;
 }
 
-/**
- * React island that replays the legacy `bounceIn` keyframe (from clothes.css)
- * using Motion's spring physics so the card has the same playful entry.
- * Respects `prefers-reduced-motion`: skips the animation entirely so the
- * card renders at its final state without scaling or fading.
- */
 export default function CardEntry({ children }: Props) {
   const shouldReduceMotion = useReducedMotion();
 

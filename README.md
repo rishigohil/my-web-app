@@ -44,7 +44,7 @@ src/
 ├── pages/
 │   ├── index.astro          # the profile card
 │   └── 404.astro            # table-flip not-found page
-└── styles/global.css        # Tailwind import + dotted bg + bio link styles
+└── styles/clothes.css       # Tailwind import + dotted bg + bio link styles
 public/                       # favicon, profile pic, robots.txt, ai.txt
 archive/                      # legacy AngularJS source — gitignored from new builds
 ```
