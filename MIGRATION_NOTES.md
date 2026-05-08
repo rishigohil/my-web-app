@@ -162,6 +162,26 @@ mirrored as `TODO:` placeholders in the new content where relevant.
   Astro generates a static 404 from `src/pages/404.astro` (not in scope here).
 - No sitemap, robots.txt, or feed in the legacy site.
 
+## Anti-AI-scraper policy
+
+The new site asks AI crawlers and dataset scrapers not to ingest the
+content. This is enforced in three places:
+
+- `public/robots.txt` lists every well-known LLM training / retrieval
+  bot UA (GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web,
+  anthropic-ai, Google-Extended, CCBot, PerplexityBot, Bytespider,
+  Amazonbot, Applebot-Extended, Meta-ExternalAgent, Diffbot, etc.) with
+  `Disallow: /`. The default `User-agent: *` rule preserves the legacy
+  `index, nofollow` behavior.
+- `public/.well-known/ai.txt` declares a human-readable policy + a
+  contact email for permission requests.
+- `BaseLayout.astro` adds `<meta name="robots" content="index, nofollow,
+  noai, noimageai">` and bot-specific meta tags so crawlers that ignore
+  robots.txt still see the directive.
+
+These rely on bot operators voluntarily honoring them; they're not a
+technical block.
+
 ## Stack at a glance
 
 | Concern                | Old (AngularJS)                          | New (Astro)                                 |
