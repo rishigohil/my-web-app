@@ -1,18 +1,18 @@
 # rishigohil.com
 
 Personal site for Rishi Gohil. Static site built with Astro and deployed to
-Cloudflare Pages.
+Cloudflare Pages — a 1:1 port of the legacy AngularJS profile card to a
+modern static stack.
 
 ## Stack
 
 - [Astro](https://astro.build) — static site generator with islands
 - [Tailwind CSS](https://tailwindcss.com) v4 — styling
-- [React](https://react.dev) — only used for animation islands
-- [Motion](https://motion.dev) — scroll/spring animation
+- [React](https://react.dev) — only used for the bounceIn entry animation
+  island (`CardEntry.tsx`)
+- [Motion](https://motion.dev) — spring physics for the card entry
 - [Astro View Transitions](https://docs.astro.build/en/guides/view-transitions/)
   — smooth page-to-page transitions
-- [Markdown content collections](https://docs.astro.build/en/guides/content-collections/)
-  — typed `projects` collection with a Zod schema
 - [Inter Variable](https://rsms.me/inter/) via `@fontsource-variable/inter`
 
 The legacy AngularJS source is preserved (un-built) under `archive/` for
@@ -35,57 +35,19 @@ Requires Node 22+.
 
 ```
 src/
-├── components/        # Astro + React components
+├── components/
+│   ├── CardEntry.tsx        # React island, Motion spring on mount
+│   ├── ProfileCard.astro    # the profile card (avatar, bio, socials, resume)
+│   └── SocialLinks.astro    # social-icon row with old hover-color treatment
 ├── layouts/
-│   └── BaseLayout.astro
-├── pages/             # file-based routing
-│   ├── index.astro
-│   ├── about.astro
-│   ├── resume.astro
-│   ├── 404.astro
-│   └── projects/
-│       ├── index.astro
-│       ├── [...slug].astro
-│       └── tags/[tag].astro
-├── content/
-│   └── projects/      # one .md per project
-├── content.config.ts  # typed collection schema
-└── styles/global.css
-public/                # static assets (favicon, profile pic, etc.)
-archive/               # legacy AngularJS source — gitignored from new builds
+│   └── BaseLayout.astro     # html shell, view transitions, anti-AI meta
+├── pages/
+│   ├── index.astro          # the profile card
+│   └── 404.astro            # table-flip not-found page
+└── styles/global.css        # Tailwind import + dotted bg + bio link styles
+public/                       # favicon, profile pic, robots.txt, ai.txt
+archive/                      # legacy AngularJS source — gitignored from new builds
 ```
-
-## Adding a new project
-
-Drop a markdown file into `src/content/projects/`. The filename (without
-extension) becomes the URL slug. Frontmatter is type-checked against
-`src/content.config.ts`:
-
-```md
----
-title: "My new project"
-description: "One-liner about the project."
-tech: ["TypeScript", "Astro", "Cloudflare"]
-date: 2026-05-01
-featured: true            # show on the home page
-image: "/some-image.jpg"  # optional, served from public/
-link: "https://example.com"
-repo: "https://github.com/rishigohil/example"
----
-
-Project body in markdown.
-```
-
-Save the file, and on the next build:
-
-- It appears on `/projects` with its tech tags filterable.
-- It gets its own page at `/projects/<slug>/`.
-- If `featured: true`, it also appears on `/`.
-
-## Theme toggle
-
-The site defaults to dark mode and persists the user's choice in
-`localStorage` under `"theme"`. The toggle lives in the nav bar.
 
 ## Deploying to Cloudflare Pages
 
@@ -99,8 +61,17 @@ The site defaults to dark mode and persists the user's choice in
 No SSR adapter is configured. The site is fully static — `npm run build`
 produces a `dist/` directory that Cloudflare Pages can serve as-is.
 
+## Anti-AI-scraper policy
+
+- `public/robots.txt` lists known LLM training/retrieval bots with
+  `Disallow: /` while preserving `index, nofollow` defaults for general
+  crawlers.
+- `public/.well-known/ai.txt` is a human-readable policy. Permission
+  requests are directed to the WHOIS contact for the domain.
+- `BaseLayout.astro` includes `noai, noimageai` meta tags for crawlers
+  that ignore `robots.txt`.
+
 ## Quality bar
 
 - `npm run build` succeeds with zero errors and zero warnings
 - `npx astro check` passes with no TypeScript errors
-- All routes load locally on `npm run dev`

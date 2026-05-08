@@ -1,54 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-
-const projects = await getCollection("projects", ({ data }) => data.featured);
-projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+import ProfileCard from "../components/ProfileCard.astro";
 ---
 
-<BaseLayout
-  title="Rishi Gohil"
-  description="Personal site of Rishi Gohil — Senior Software Engineer."
->
-  <Hero />
-
-  <section class="mx-auto max-w-5xl px-6 py-16">
-    <div class="mb-8 flex items-end justify-between">
-      <h2 class="text-2xl font-semibold tracking-tight">Featured projects</h2>
-      <a
-        href="/projects"
-        class="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
-      >
-        All projects →
-      </a>
-    </div>
-
-    {
-      projects.length === 0 ? (
-        <p class="text-sm text-zinc-500 dark:text-zinc-500">
-          No featured projects yet. Drop a markdown file into
-          <code class="mx-1 rounded bg-zinc-100 px-1.5 py-0.5 text-xs dark:bg-zinc-800">
-            src/content/projects/
-          </code>
-          with <code>featured: true</code>.
-        </p>
-      ) : (
-        <ul class="grid gap-6 sm:grid-cols-2">
-          {projects.map((p) => (
-            <li>
-              <ProjectCard
-                title={p.data.title}
-                description={p.data.description}
-                href={`/projects/${p.id}`}
-                tech={p.data.tech}
-                image={p.data.image}
-              />
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </section>
+<BaseLayout>
+  <ProfileCard />
 </BaseLayout>

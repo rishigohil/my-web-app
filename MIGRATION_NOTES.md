@@ -102,56 +102,55 @@ The legacy app has only **two** routes via `$routeProvider`:
 - `/` → `views/home.html` (the profile card)
 - `*` (otherwise) → `views/404.html`
 
-There is **no separate `/about`, `/projects`, `/contact`, or `/resume`
-page** in the old site — everything lives on the home card. The canonical
-list in the migration brief (Home, About, Projects, Contact) is therefore
-new, and most of the project-collection content has to be filled in by the
-site owner. See "Open questions" below.
+The new Astro site mirrors this exactly: a single `/` profile card and
+a `404.astro` for unknown paths. No `/about`, `/projects`, or `/resume`
+routes — all of that content lives on the home card, just like before.
 
 ## Behavior preserved in the new site
 
-- Profile bio + designation copy → `/about` and the home hero.
-- Social links → footer + `/about` contact section.
-- Resume link → `/resume` page (placeholder + print CSS scaffold; the old
-  Google Drive URL is linked from there as the current resume).
-- Favicon (`icon.png`) → `public/favicon.png`.
-- Profile picture (`mypic.jpg`) → `public/mypic.jpg`, used on `/about`.
+- Profile picture, name, designation, current-designation line (with the
+  Anthology link), and the two-sentence bio — all rendered verbatim on `/`.
+- All six social links (Facebook, Twitter, LinkedIn, GitHub, SoundCloud,
+  Email) with the original brand-color hover treatment from `clothes.css`
+  (FB `#3d5b99`, Twitter `#00aced`, LinkedIn `#0073a4`, GitHub `#808080`,
+  SoundCloud `#FF7512`, Email `#0072c6`).
+- Resume button linking to the original Google Drive PDF.
+- White card on dotted SVG background — the dotted SVG is the same
+  inline base64 from `clothes.css`.
+- Card hover lift (`translate(0, -4px)` + deeper shadow) and the circular
+  profile-picture ring shadow that grows on hover.
+- Animated underline on bio links (`.bio a::before` / `::after` from
+  `clothes.css`).
+- The `bounceIn` entry animation — replayed via Motion's spring physics
+  inside a small React island (`CardEntry.tsx`), preserving the playful
+  pop while demonstrating the Astro islands pattern.
+- 404 page with the table-flip ASCII (`(╯°□°)╯︵ ┻━┻`) and back/home
+  buttons.
+- Page title `I'm Rishi Gohil`, the original `<meta name="keywords">`,
+  and `index, nofollow` for general crawlers.
+- Favicon (`icon.png`) → `public/favicon.png`; profile picture
+  (`mypic.jpg`) → `public/mypic.jpg`.
 
 ## Behavior dropped intentionally
 
 - Google Analytics (`UA-98865326-1`) — per migration brief: no analytics.
 - AngularJS, ngRoute, ngAnimate, ngSanitize, jQuery-style transitions.
-- Skeleton + normalize + Font Awesome CDN — replaced by Tailwind + inline SVG.
-- The `bounceIn` card load animation — replaced by a tasteful
-  Motion-driven fade/slide on the home hero.
-- Unused `.ttf` font files in `content/fonts/`.
+- Skeleton + normalize + Font Awesome CDN — replaced by Tailwind + inline
+  SVG icons.
+- Unused `.ttf` font files in `content/fonts/` — Inter Variable used
+  instead.
+- `pat.png` — not referenced by the legacy site; the dotted bg is the
+  inline SVG. Removed from `public/`.
 
-## Open questions / `TODO` for the site owner
+## Notes
 
-These items can't be answered from the old source; they're flagged here and
-mirrored as `TODO:` placeholders in the new content where relevant.
-
-1. **Projects content.** The old site has no projects, so the new
-   `src/content/projects/` collection ships with a single example entry
-   (`example-project.md`) marked with `TODO:` placeholders. Add real
-   projects by dropping new `.md` files in `src/content/projects/`.
-2. **About bio.** The two-sentence bio from `data.json` is preserved as the
-   `/about` lead paragraph. Fuller career history, education, and
-   "currently" details are `TODO:` placeholders.
-3. **Current employer.** `data.json` says "Sr. Software Engineer at
-   Anthology" (set in 2017-era code). Confirm whether this is still
-   current; the new site repeats the same line and leaves a `TODO:` if
-   you'd like to update it.
-4. **Resume.** The Google Drive resume URL still resolves at the link in
-   `data.json`, but the `/resume` page is a placeholder ("Resume coming
-   soon") with a `@media print` scaffold per the brief.
-5. **Twitter / X.** `data.json` lists `twitter.com/rishi_gohil10`.
-   Twitter has rebranded to X; the link still works but you may want to
-   update the label.
-6. **Footer copyright year.** Old site says `© 2017 Rishi Gohil`. New
-   site uses the current year dynamically.
-7. **`pat.png`.** Not referenced anywhere in the current codebase. Kept in
-   `public/legacy/pat.png` in case it's useful but not used by the new site.
+- **Footer copyright year.** Old site said `© 2017 Rishi Gohil` literally.
+  New site uses the current year (`new Date().getFullYear()`).
+- **Twitter / X.** `data.json` listed `twitter.com/rishi_gohil10`. Twitter
+  has rebranded to X; the link still works and is preserved verbatim.
+- **Current employer.** `data.json` says "Sr. Software Engineer at
+  Anthology" (from 2017). Preserved verbatim — confirm and update if
+  needed.
 
 ## Broken / missing references
 
@@ -190,6 +189,6 @@ technical block.
 | Styling                | Skeleton + custom CSS                    | Tailwind CSS                                |
 | Animation              | CSS keyframes, ngAnimate                 | Motion (in a small React island) + View Transitions |
 | Routing                | `$routeProvider` (HTML5 mode)            | Astro file-based routing                    |
-| Content                | Single `data.json`                       | Markdown content collection (`projects`)    |
+| Content                | Single `data.json`                       | Inlined into `ProfileCard.astro`            |
 | Hosting target         | (unspecified)                            | Cloudflare Pages (static)                   |
 | Analytics              | Google Analytics                         | None                                        |
