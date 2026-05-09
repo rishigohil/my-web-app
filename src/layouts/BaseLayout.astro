@@ -1,6 +1,7 @@
 ---
 import "../styles/clothes.css";
 import { ClientRouter } from "astro:transitions";
+import ThemeToggle from "../components/ThemeToggle";
 
 interface Props {
   title?: string;
@@ -55,6 +56,23 @@ const ogImageUrl = new URL("/mypic.jpg", Astro.site).toString();
     <title>{title}</title>
     <ClientRouter />
 
+    <!-- Apply saved theme before first paint to avoid flash -->
+    <script is:inline>
+      (function () {
+        function applyTheme() {
+          var t = localStorage.getItem("theme");
+          var html = document.documentElement;
+          if (t === "light" || t === "dark") {
+            html.setAttribute("data-theme", t);
+          } else {
+            html.removeAttribute("data-theme");
+          }
+        }
+        applyTheme();
+        document.addEventListener("astro:after-swap", applyTheme);
+      })();
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script
       is:inline
@@ -84,6 +102,7 @@ const ogImageUrl = new URL("/mypic.jpg", Astro.site).toString();
     </script>
   </head>
   <body>
+    <ThemeToggle client:load />
     <main id="main">
       <slot />
     </main>
