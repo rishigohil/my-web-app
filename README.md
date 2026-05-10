@@ -1,8 +1,7 @@
 # rishigohil.com
 
-Personal site for Rishi Gohil. Static site built with Astro and deployed to
-Cloudflare Pages — a 1:1 port of the legacy AngularJS profile card to a
-modern static stack.
+Personal site for Rishi Gohil. Site built with Astro and deployed to
+Cloudflare.
 
 ## Stack
 
@@ -14,10 +13,6 @@ modern static stack.
 - [Astro View Transitions](https://docs.astro.build/en/guides/view-transitions/)
   — smooth page-to-page transitions
 - [Inter Variable](https://rsms.me/inter/) via `@fontsource-variable/inter`
-
-The legacy AngularJS source is preserved (un-built) under `archive/` for
-reference. See `MIGRATION_NOTES.md` for the inventory of what was carried
-over.
 
 ## Local development
 
